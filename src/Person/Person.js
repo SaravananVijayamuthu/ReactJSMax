@@ -1,7 +1,14 @@
 import React from 'react';
-// using Es6 not class based 
+// using Es6 not class based
 const person = (props) => {
-	return <h2>I'm {props.name} and {props.age} years old</h2>;
+	return (
+		<div>
+			<h2>
+				I'm {props.name} and {props.age} years old
+			</h2>
+			<p>{props.children}</p>
+		</div>
+	);
 };
 export default person;
 
