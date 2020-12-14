@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
 
@@ -27,15 +27,24 @@ class App extends Component {
 		}) 
 	}
 
+	onNameChanged = (event) => {
+		this.setState({
+			persons:[
+				{name:"Saravanan V", age: 21},
+				{name:event.target.value, age: 20},
+				{name:"Baymax Alpha", age: 21},
+			]
+		}) 
+	}
 	render() {
 		return (
 			<div className="App">
 			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
+				{/* <img src={logo} className="App-logo" alt="logo" /> */}
 				<p>This is Awesome dude!!!!!!!!</p>
 				<button onClick={this.switchNameHandler.bind(this, 'Saravanan Alpha')}>Switch Name</button>
 				<Person name = {this.state.persons[0].name} age = {this.state.persons[0].age}/>
-				<Person name = {this.state.persons[1].name} age = {this.state.persons[1].age}/>
+				<Person name = {this.state.persons[1].name} age = {this.state.persons[1].age} changed = {this.onNameChanged}/>
 				<Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
 			</header>
 		</div>
