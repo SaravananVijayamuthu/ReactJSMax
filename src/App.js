@@ -37,12 +37,18 @@ class App extends Component {
 		}) 
 	}
 	render() {
+		const btnStyle = {
+			backgroundColor:'white',
+			font:'inherit',
+			border:'3px solid blue',
+			padding:'8px'
+		}
 		return (
 			<div className="App">
 			{/* <header className="App-header"> */}
 				{/* <img src={logo} className="App-logo" alt="logo" /> */}
 				<p>This is Awesome dude!!!!!!!!</p>
-				<button onClick={this.switchNameHandler.bind(this, 'Saravanan Alpha')}>Switch Name</button>
+				<button style={btnStyle} onClick={this.switchNameHandler.bind(this, 'Saravanan Alpha')}>Switch Name</button>
 				<Person name = {this.state.persons[0].name} age = {this.state.persons[0].age}/>
 				<Person name = {this.state.persons[1].name} age = {this.state.persons[1].age} changed = {this.onNameChanged}/>
 				<Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
