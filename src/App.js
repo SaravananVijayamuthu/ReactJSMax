@@ -8,16 +8,12 @@ class App extends Component {
 		persons: [ { name: 'Sarvi', age: 20 }, { name: 'Saro', age: 19 }, { name: 'Baymax', age: 20 } ],
 		showState: false
 	};
-	/*property tat can be executed as func. 
-	we r changing the state of person names here through btn click event listener*/
 
-	switchNameHandler = (newName) => {
-		// console.log("Btn check!!")
-		// setState method is provided by react to change the state of component
-		this.setState({
-			persons: [ { name: newName, age: 21 }, { name: 'Saravanan M', age: 20 }, { name: 'Baymax Alpha', age: 21 } ]
-		});
-	};
+	deletePersonHandler = (personIndex) => {
+		const persons = this.state.persons;
+		persons.splice(personIndex, 1);
+		this.setState({persons: persons})
+	}
 
 	onNameChanged = (event) => {
 		this.setState({
@@ -28,10 +24,12 @@ class App extends Component {
 			]
 		});
 	};
+
 	toggleState = () => {
 		const isShow = this.state.showState;
 		this.setState({ showState: !isShow });
 	};
+
 	render() {
 		const btnStyle = {
 			backgroundColor: 'white',
@@ -39,20 +37,18 @@ class App extends Component {
 			border: '3px solid blue',
 			padding: '8px'
 		};
+
 		let persons = null;
 		if (this.state.showState) {
 			persons = (
 				<div>
-					<Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-					<Person
-						name={this.state.persons[1].name}
-						age={this.state.persons[1].age}
-						changed={this.onNameChanged}
-					/>
-					<Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+					{this.state.persons.map((person, index) => {
+						return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age} />;
+					})}
 				</div>
 			);
 		}
+		
 		return (
 			<div className="App">
 				{/* <header className="App-header"> */}
