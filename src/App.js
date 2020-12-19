@@ -5,12 +5,13 @@ import Person from './Person/Person';
 
 class App extends Component {
 	state = {
-		persons: [ { name: 'Sarvi', age: 20 }, { name: 'Saro', age: 19 }, { name: 'Baymax', age: 20 } ],
+		persons: [ { id:'fdasda', name: 'Sarvi', age: 20 }, { id:'fdafaa', name: 'Saro', age: 19 }, { key:'dafdada', name: 'Baymax', age: 20 } ],
 		showState: false
 	};
 
 	deletePersonHandler = (personIndex) => {
-		const persons = this.state.persons;
+		// const persons = this.state.persons;
+		const persons = [...this.state.persons];
 		persons.splice(personIndex, 1);
 		this.setState({persons: persons})
 	}
@@ -19,7 +20,7 @@ class App extends Component {
 		this.setState({
 			persons: [
 				{ name: 'Saravanan V', age: 21 },
-				{ name: event.target.value, age: 20 },
+				{ name: event.target.key, age: 20 },
 				{ name: 'Baymax Alpha', age: 21 }
 			]
 		});
@@ -43,7 +44,7 @@ class App extends Component {
 			persons = (
 				<div>
 					{this.state.persons.map((person, index) => {
-						return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age} />;
+						return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age} key={person.id}/>;
 					})}
 				</div>
 			);
