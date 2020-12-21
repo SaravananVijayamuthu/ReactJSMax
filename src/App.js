@@ -5,25 +5,30 @@ import Person from './Person/Person';
 
 class App extends Component {
 	state = {
-		persons: [ { id:'fdasda', name: 'Sarvi', age: 20 }, { id:'fdafaa', name: 'Saro', age: 19 }, { key:'dafdada', name: 'Baymax', age: 20 } ],
+		persons: [
+			{ id: 'fdasda', name: 'Sarvi', age: 20 },
+			{ id: 'Kies', name: 'Saro', age: 19 },
+			{ id: 'flies', name: 'Baymax', age: 20 }
+		],
 		showState: false
 	};
-
+	onNameChanged = (event, id) => {
+		const personIndex = this.state.persons.findIndex((p) => {
+			return (p.id === id);
+		});
+		const person = {
+			...this.state.persons[personIndex]
+		};
+		person.name = event.target.value;
+		const persons = [ ...this.state.persons ];
+		persons[personIndex] = person;
+		this.setState({ persons: persons });
+	};
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons;
-		const persons = [...this.state.persons];
+		const persons = [ ...this.state.persons ];
 		persons.splice(personIndex, 1);
-		this.setState({persons: persons})
-	}
-
-	onNameChanged = (event) => {
-		this.setState({
-			persons: [
-				{ name: 'Saravanan V', age: 21 },
-				{ name: event.target.key, age: 20 },
-				{ name: 'Baymax Alpha', age: 21 }
-			]
-		});
+		this.setState({ persons: persons });
 	};
 
 	toggleState = () => {
@@ -44,12 +49,19 @@ class App extends Component {
 			persons = (
 				<div>
 					{this.state.persons.map((person, index) => {
-						return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age} key={person.id}/>;
+						return (
+							<Person
+								click={() => this.deletePersonHandler(index)}
+								name={person.name}
+								age={person.age}
+								key={person.id}
+								changed={(event) => this.onNameChanged(event, person.id)}
+							/>
+						);
 					})}
 				</div>
 			);
 		}
-		
 		return (
 			<div className="App">
 				{/* <header className="App-header"> */}
