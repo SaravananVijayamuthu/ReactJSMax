@@ -12,9 +12,10 @@ class App extends Component {
 		],
 		showState: false
 	};
+
 	onNameChanged = (event, id) => {
 		const personIndex = this.state.persons.findIndex((p) => {
-			return (p.id === id);
+			return p.id === id;
 		});
 		const person = {
 			...this.state.persons[personIndex]
@@ -24,6 +25,7 @@ class App extends Component {
 		persons[personIndex] = person;
 		this.setState({ persons: persons });
 	};
+
 	deletePersonHandler = (personIndex) => {
 		// const persons = this.state.persons;
 		const persons = [ ...this.state.persons ];
@@ -38,9 +40,9 @@ class App extends Component {
 
 	render() {
 		const btnStyle = {
-			backgroundColor: 'white',
+			backgroundColor: 'green',
 			font: 'inherit',
-			border: '3px solid blue',
+			border: '3px solid white',
 			padding: '8px'
 		};
 
@@ -61,7 +63,9 @@ class App extends Component {
 					})}
 				</div>
 			);
+			btnStyle.backgroundColor = 'red';
 		}
+
 		return (
 			<div className="App">
 				{/* <header className="App-header"> */}
