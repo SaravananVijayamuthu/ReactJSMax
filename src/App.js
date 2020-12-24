@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
 
-const StyledButton = styled.button`
-	background-color: ${props => props.alt ? 'red' : 'green'};
-	font: inherit;
-	border: 3px solid white;
-	padding: 8px;
-	color: white;
-	&:hover {
-		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-		color: black;
-	}
-`;
 class App extends Component {
 	state = {
 		persons: [
@@ -52,6 +40,7 @@ class App extends Component {
 
 	render() {
 		let persons = null;
+		let btnclasses = [classes.button];
 		if (this.state.showState) {
 			persons = (
 				<div>
@@ -68,23 +57,24 @@ class App extends Component {
 					})}
 				</div>
 			);
+			btnclasses.push(classes.Red);
 		}
 
-		const classes = [];
+		const assignedClasses = [];
 		if (this.state.persons.length <= 2) {
-			classes.push('red');
+			assignedClasses.push(classes.red);
 		}
 		if (this.state.persons.length <= 1) {
-			classes.push('bold');
+			assignedClasses.push(classes.bold);
 		}
 
 		return (
-			<div className="App">
+			<div className={classes.App}>
 				{/* <header className="App-header"> */}
 				{/* <img src={logo} className="App-logo" alt="logo" /> */}
 				<h1>Hi, I'm a React App</h1>
-				<p className={classes.join(' ')}>This is Working!!</p>
-				<StyledButton alt={this.state.showState} onClick={this.toggleState}>Show Persons</StyledButton>
+				<p className={assignedClasses.join(' ')}>This is Working!!</p>
+				<button className={btnclasses.join(' ')} onClick={this.toggleState}>Show Persons</button>
 				{persons}
 				{/* </header> */}
 			</div>
