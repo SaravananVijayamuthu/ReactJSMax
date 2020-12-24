@@ -43,7 +43,8 @@ class App extends Component {
 			backgroundColor: 'green',
 			font: 'inherit',
 			border: '3px solid white',
-			padding: '8px'
+			padding: '8px',
+			color: 'white'
 		};
 
 		let persons = null;
@@ -85,7 +86,7 @@ class App extends Component {
 				</button>
 				{persons}
 				{/* </header> */}
-			</div>
+			</div> 	
 		);
 	}
 }
