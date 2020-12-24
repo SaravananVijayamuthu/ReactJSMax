@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
+import styled from 'styled-components';
 
+const StyledButton = styled.button`
+	background-color: ${props => props.alt ? 'red' : 'green'};
+	font: inherit;
+	border: 3px solid white;
+	padding: 8px;
+	color: white;
+	&:hover {
+		background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+		color: black;
+	}
+`;
 class App extends Component {
 	state = {
 		persons: [
@@ -39,14 +51,6 @@ class App extends Component {
 	};
 
 	render() {
-		const btnStyle = {
-			backgroundColor: 'green',
-			font: 'inherit',
-			border: '3px solid white',
-			padding: '8px',
-			color: 'white'
-		};
-
 		let persons = null;
 		if (this.state.showState) {
 			persons = (
@@ -64,7 +68,6 @@ class App extends Component {
 					})}
 				</div>
 			);
-			btnStyle.backgroundColor = 'red';
 		}
 
 		const classes = [];
@@ -81,12 +84,10 @@ class App extends Component {
 				{/* <img src={logo} className="App-logo" alt="logo" /> */}
 				<h1>Hi, I'm a React App</h1>
 				<p className={classes.join(' ')}>This is Working!!</p>
-				<button style={btnStyle} onClick={this.toggleState}>
-					Show Persons
-				</button>
+				<StyledButton alt={this.state.showState} onClick={this.toggleState}>Show Persons</StyledButton>
 				{persons}
 				{/* </header> */}
-			</div> 	
+			</div>
 		);
 	}
 }

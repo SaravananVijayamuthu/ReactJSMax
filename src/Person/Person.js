@@ -1,5 +1,5 @@
 import React from 'react';
-import './Person.css';
+// import './Person.css';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -9,6 +9,9 @@ const StyledDiv = styled.div`
 		padding: 16px;
 		box-shadow: 0 2px 3px #ccc;
 		text-align: center;
+		@media (min-width: 500px) {
+			width: 450px;
+		}
 `;
 // using Es6 not class based
 const person = (props) => {
