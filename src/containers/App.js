@@ -52,7 +52,7 @@ class App extends Component {
 			<div className={classes.App}>
 				{/* <header className="App-header"> */}
 				{/* <img src={logo} className="App-logo" alt="logo" /> */}
-				<Cockpit showState ={this.state.showState} persons={this.state.persons} clicked = {this.toggleState}/>
+				<Cockpit title={this.props.appTitle} showState ={this.state.showState} persons={this.state.persons} clicked = {this.toggleState}/>
 				{persons}
 				{/* </header> */}
 			</div>
